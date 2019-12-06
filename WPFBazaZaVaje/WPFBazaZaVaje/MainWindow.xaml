@@ -7,6 +7,14 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <Menu>
+            <MenuItem Header="Osnovni podatki">
+                <MenuItem Header="Kupci" Click="MenuItem_Click"/>
+                <MenuItem Header="Dobavitelji" Click="MenuItem_Click_1"/>
+                <MenuItem Header="Produkti"/>
+            </MenuItem>
+            <MenuItem Header="Računi"/>
+            <MenuItem Header="Statistika"/>
+        </Menu>
     </Grid>
 </Window>

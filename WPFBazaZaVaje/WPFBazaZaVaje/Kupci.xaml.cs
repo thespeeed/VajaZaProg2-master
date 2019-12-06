@@ -10,31 +10,28 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace WPFBazaZaVaje
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Kupci.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Kupci : Window
     {
-        public MainWindow()
+        CollectionViewSource cvs;
+        public Kupci()
         {
             InitializeComponent();
         }
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            Kupci a = new Kupci();
-            a.Show();
-        }
-
-        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
-        {
-            Dobavitelji a = new Dobavitelji();
-            a.Show();
+            BazaZaVajeEntities c = new BazaZaVajeEntities();
+            var x = (from a in c.KUPEC
+                    select a).ToList();
+            cvs = (CollectionViewSource)FindResource("cvs");
+            cvs.Source = x;
         }
     }
 }

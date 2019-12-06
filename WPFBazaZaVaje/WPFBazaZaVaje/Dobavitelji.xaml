@@ -1,0 +1,64 @@
+﻿<Window x:Class="WPFBazaZaVaje.Dobavitelji"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFBazaZaVaje"
+        mc:Ignorable="d"
+        Title="Dobavitelji" Height="450" Width="800" Loaded="Window_Loaded">
+    <Window.Resources>
+        <CollectionViewSource x:Key="dOBAVITELJViewSource" d:DesignSource="{d:DesignInstance {x:Type local:DOBAVITELJ}, CreateList=True}"/>
+        <CollectionViewSource x:Key="dOBAVITELJPRODUKTViewSource" Source="{Binding PRODUKT, Source={StaticResource dOBAVITELJViewSource}}"/>
+    </Window.Resources>
+    <Grid DataContext="{StaticResource dOBAVITELJPRODUKTViewSource}">
+        <Grid x:Name="grid1" DataContext="{StaticResource dOBAVITELJViewSource}" HorizontalAlignment="Left" Margin="59,41,0,0" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Content="D DRŽAVA:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
+            <TextBox x:Name="d_DRŽAVATextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" Text="{Binding D_DRŽAVA, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="D IME:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
+            <TextBox x:Name="d_IMETextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" Text="{Binding D_IME, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="D KODA:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
+            <TextBox x:Name="d_KODATextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="2" Text="{Binding D_KODA, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="D KONTAKT:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
+            <TextBox x:Name="d_KONTAKTTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="3" Text="{Binding D_KONTAKT, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="D NAROČILO:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
+            <TextBox x:Name="d_NAROČILOTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="4" Text="{Binding D_NAROČILO, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="D PODROČJE:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="5" VerticalAlignment="Center"/>
+            <TextBox x:Name="d_PODROČJETextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="5" Text="{Binding D_PODROČJE, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="D TELEFON:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="6" VerticalAlignment="Center"/>
+            <TextBox x:Name="d_TELEFONTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="6" Text="{Binding D_TELEFON, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+        </Grid>
+        <DataGrid x:Name="pRODUKTDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="321,41,71,178" RowDetailsVisibilityMode="VisibleWhenSelected">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="d_KODAColumn" Binding="{Binding D_KODA}" Header="D KODA" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="p_CENAColumn" Binding="{Binding P_CENA}" Header="P CENA" Width="SizeToHeader"/>
+                <DataGridTemplateColumn x:Name="p_DATUMColumn" Header="P DATUM" Width="SizeToHeader">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <DatePicker SelectedDate="{Binding P_DATUM, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn x:Name="p_KODAColumn" Binding="{Binding P_KODA}" Header="P KODA" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="p_MINColumn" Binding="{Binding P_MIN}" Header="P MIN" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="p_OPISColumn" Binding="{Binding P_OPIS}" Header="P OPIS" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="p_POPUSTColumn" Binding="{Binding P_POPUST}" Header="P POPUST" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="p_ZALOGAColumn" Binding="{Binding P_ZALOGA}" Header="P ZALOGA" Width="SizeToHeader"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        
+
+    </Grid>
+</Window>
